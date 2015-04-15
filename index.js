@@ -41,6 +41,10 @@ function removeBagAttributes(content) {
         title = 'RSA PRIVATE KEY';
     }
 
+    if(content.indexOf('PRIVATE KEY') > -1) {
+        title = 'PRIVATE KEY';
+    }
+
     var regexp = new RegExp('-----BEGIN ' + title + '-----(.*)-----END ' + title + '-----');
 
     content = content.replace(/\n/g, '');
