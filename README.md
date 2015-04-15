@@ -1,6 +1,6 @@
 # pemutils
 
-Allows to convert from `.pfx` to `.pem`
+Converts .pfx to .pem files (key, cert or both) with simple OpenSSL bindings.
 
 ```javascript
 var pemutils = require('pemutils');
