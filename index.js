@@ -37,18 +37,18 @@ function removeBagAttributes(content) {
         title = 'CERTIFICATE';
     }
 
-    if(content.indexOf('RSA PRIVATE KEY') > -1) {
-        title = 'RSA PRIVATE KEY';
-    }
-
     if(content.indexOf('PRIVATE KEY') > -1) {
         title = 'PRIVATE KEY';
+    }
+
+    if(content.indexOf('RSA PRIVATE KEY') > -1) {
+        title = 'RSA PRIVATE KEY';
     }
 
     var regexp = new RegExp('-----BEGIN ' + title + '-----(.*)-----END ' + title + '-----');
 
     content = content.replace(/\n/g, '');
-    content = regexp.exec(content);
+    content = regexp.exec(content) || [];
     content = content[1].split('');
     content = chop(content, 76);
     content = content.map(function(line) {
