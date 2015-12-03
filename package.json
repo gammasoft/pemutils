@@ -1,6 +1,6 @@
 {
   "name": "pemutils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Convert .pfx to .pem files (key, cert or both) with simple OpenSSL bindings",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,10 @@
   ],
   "author": "Renato Gama <renato@gammasoft.com.br>",
   "license": "MIT",
+  "contributors": [{
+    "name": "Ben",
+    "url": "https://github.com/weagle08"
+  }],
   "bugs": {
     "url": "https://github.com/gammasoft/pemutils/issues"
   },

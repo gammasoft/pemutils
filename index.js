@@ -125,9 +125,13 @@ function fromPfx(params, callback) {
     });
 }
 
+module.exports.fromPfx = fromPfx;
+
 function fromDer(params, cb) {
     params.path = '"' + params.path + '"';
-    var command = ['openssl x509 -in',
+
+    var command = [
+        'openssl x509 -in',
         params.path,
         '-inform der -outform pem',
         '-passin pass:' + (params.password || '')
@@ -148,5 +152,4 @@ function fromDer(params, cb) {
     }
 }
 
-module.exports.fromPfx = fromPfx;
 module.exports.fromDer = fromDer;
