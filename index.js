@@ -59,6 +59,7 @@ function removeBagAttributes(content) {
 }
 
 function fromPfx(params, callback) {
+    params.path = '"' + params.path + '"';
     function attributes(cb) {
         var command = [
             'openssl pkcs12 -in',
@@ -72,7 +73,6 @@ function fromPfx(params, callback) {
             }
 
             var attributes = x509.parseCert(stdout);
-            delete attributes.publicKey;
 
             cb(null, attributes);
         });
@@ -100,7 +100,7 @@ function fromPfx(params, callback) {
             'openssl pkcs12 -in',
             params.path,
             '-nodes -clcerts -nokeys',
-            '-passin pass:' + (params.password || ''),
+            '-passin pass:' + (params.password || '')
         ].join(' ');
 
         child_process.exec(command, function(err, stdout, stderr) {
@@ -125,4 +125,28 @@ function fromPfx(params, callback) {
     });
 }
 
+function fromDer(params, cb) {
+    params.path = '"' + params.path + '"';
+    var command = ['openssl x509 -in',
+        params.path,
+        '-inform der -outform pem',
+        '-passin pass:' + (params.password || '')
+    ].join(' ');
+
+    try {
+        child_process.exec(command, function(err, stdout, stderr){
+            if(err) {
+                return cb(err);
+            }
+
+            var cert = x509.parseCert(stdout);
+
+            cb(null, cert);
+        });
+    } catch(e) {
+        cb(e);
+    }
+}
+
 module.exports.fromPfx = fromPfx;
+module.exports.fromDer = fromDer;
