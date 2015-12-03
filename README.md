@@ -1,5 +1,7 @@
 # pemutils
 
+[![Build Status](https://drone.io/github.com/gammasoft/pemutils/status.png)](https://drone.io/github.com/gammasoft/pemutils/latest)
+
 Converts .pfx to .pem files (key, cert or both) with simple OpenSSL bindings.
 
 ```javascript
